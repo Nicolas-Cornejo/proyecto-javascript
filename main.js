@@ -1,89 +1,119 @@
+// Función para obtener entrada del usuario
+function getUserInput(message) {
+    return prompt(message);
+}
+
+// Definir la estructura de un producto
+class Product {
+    constructor(id, name, price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+// Array para almacenar los productos
+const products = [
+    new Product(1, 'Gorra', 7000),
+    new Product(2, 'Remera', 8000),
+    new Product(3, 'Pantalon', 6500),
+    new Product(4, 'Accesorio', 5000)
+];
+
+// Array para almacenar el carrito de compras
+let cart = [];
+
+// Función para saludar al usuario
 function saludar() {
-    let nombreIngresado = prompt("ingrese su nombre");
-    alert("Hola " + nombreIngresado + ", muchisimas gracias por entrar a comprar en mi pagina");
-};
+    let nombreIngresado = getUserInput("Ingrese su nombre");
+    alert("Hola " + nombreIngresado + ", muchísimas gracias por entrar a comprar en mi página");
+}
 
+// Función para comprar indumentaria
 function comprarIndumentaria() {
-    producto = prompt("Elija uno de nuestros productos en stock  \n 1: Gorra $7000 \n 2: Remera  $8000 \n 3: Pantalon $6500 \n 4: Accesorio $5000 \n 5: Terminar");
-    if (producto === "1") {
-        alert("Usted ha elegido la gorra de $7000")
+    let opciones = products.map(product => `${product.id}: ${product.name} $${product.price}`).join('\n') + '\n5: Terminar';
+    let productoId = getUserInput(`Elija uno de nuestros productos en stock\n${opciones}`);
+    let producto = products.find(p => p.id == productoId);
+    if (producto) {
+        cart.push(producto);
+        alert(`Usted ha elegido la ${producto.name} de $${producto.price}`);
+    } else if (productoId === "5") {
+        alert("Usted ha elegido terminar");
+    } else {
+        alert("Opción no válida. Inténtalo de nuevo.");
     }
-    else if (producto === "2") {
-        alert("Usted ha elegido la remera de $8000")
-    }
-    else if (producto === "3") {
-        alert("Usted ha elegido el pantalon de $6500")
-    }
-    else if (aproducto === "4") {
-        alert("Usted ha elegido el accesorio de $5000")
-    }
-    else if (producto === "5") {
-        alert("Usted ha elegido terminar")
-        opcion = "3";
-    };
-    opcion = prompt("Vuelva a elegir una opcion \n 1: Comprar indumentaria \n 2: Pagar \n 3: retirar \n 4 Salir ");
-};
+}
 
+// Función para pagar
 function pagar() {
-    pago = prompt("elija uno de los siguientes metodos de pago  \n 1: Tarjeta de credito \n 2: Tarjeta de debito \n 3: Efectivo \n 4: Mercado pago \n 5: Terminar");
+    let pago = getUserInput("Elija uno de los siguientes métodos de pago\n1: Tarjeta de crédito\n2: Tarjeta de débito\n3: Efectivo\n4: Mercado Pago\n5: Terminar");
     if (pago === "1") {
-        alert("Usted ha elegido la Tarjeta de credito")
+        alert("Usted ha elegido la Tarjeta de crédito");
+    } else if (pago === "2") {
+        alert("Usted ha elegido la Tarjeta de débito");
+    } else if (pago === "3") {
+        alert("Usted ha elegido Efectivo");
+    } else if (pago === "4") {
+        alert("Usted ha elegido Mercado Pago");
+    } else if (pago === "5") {
+        alert("Usted ha elegido terminar");
+    } else {
+        alert("Opción no válida. Inténtalo de nuevo.");
     }
-    else if (pago === "2") {
-        alert("Usted ha elegido la Tarjeta de debito")
-    }
-    else if (pago === "3") {
-        alert("Usted ha elegido Efectivo")
-    }
-    else if (pago === "4") {
-        alert("Usted ha elegido Mercado pago")
-    }
-    else if (pago === "5") {
-        alert("Usted ha elegido terminar")
-    }
-    opcion = prompt("Ahora terminaremos la compra, elija 3 para retirar ");
 }
 
+// Función para retirar
 function retirar() {
-    envio = prompt("elija uno de los siguientes metodos de envio  \n 1: andreani $1000 \n 2: Correo Argentino  $700 \n 3: Oca $750 \n 4: Nuestro local $0 \n 5: Finalizar ");
+    let envio = getUserInput("Elija uno de los siguientes métodos de envío\n1: Andreani $1000\n2: Correo Argentino $700\n3: Oca $750\n4: Nuestro local $0\n5: Finalizar");
     if (envio === "1") {
-        alert("Usted ha elegido Andreani")
-    }
-    else if (envio === "2") {
-        alert("Usted ha elegido Correo Argentino ")
-    }
-    else if (envio === "3") {
-        alert("Usted ha elegido oca ")
-    }
-    else if (envio === "4") {
-        alert("Usted ha elegido Nuestro local")
-    }
-    else if (envio === "5") {
-        alert("Usted ha elegido Finalizar")
-        opcion = "4";
+        alert("Usted ha elegido Andreani");
+    } else if (envio === "2") {
+        alert("Usted ha elegido Correo Argentino");
+    } else if (envio === "3") {
+        alert("Usted ha elegido Oca");
+    } else if (envio === "4") {
+        alert("Usted ha elegido Nuestro local");
+    } else if (envio === "5") {
+        alert("Usted ha elegido Finalizar");
+    } else {
+        alert("Opción no válida. Inténtalo de nuevo.");
     }
 }
 
-let producto
-let pago
-let envio
-let nombreIngresado
-
-// recien empieza aca //
-
-saludar()
-let opcion = prompt("Eliga una opcion \n 1: Comprar indumentaria \n 2: Pagar \n 3: retirar \n 4 Salir ");
-while (opcion !== "4") {
-    if (opcion === "1") {
-        comprarIndumentaria()
-    }
-    else if (opcion === "2") {
-        pagar()
-    }
-    else if (opcion === "3") {
-        retirar()
-        opcion = "4"
-    }
+// Función para calcular el total del carrito
+function calcularTotal() {
+    return cart.reduce((total, product) => total + product.price, 0);
 }
 
-alert("Muchisimas gracias, esperemos verlo pronto 😁...")
+// Función principal para interactuar con el usuario
+function main() {
+    saludar();
+    let opcion;
+
+    do {
+        opcion = getUserInput("Elija una opción\n1: Comprar indumentaria\n2: Pagar\n3: Retirar\n4: Salir");
+        switch (opcion) {
+            case '1':
+                comprarIndumentaria();
+                break;
+            case '2':
+                pagar();
+                break;
+            case '3':
+                retirar();
+                alert(`El total de su compra es: $${calcularTotal()}`);
+                opcion = '4';
+             // Finaliza después de retirar
+                break;
+            case '4':
+                alert("Muchísimas gracias, esperamos verlo pronto 😁...");
+                break;
+            default:
+                alert("Opción no válida. Inténtalo de nuevo.");
+                break;
+        }
+    } while (opcion !== '4');
+}
+
+// Ejecutar el programa
+main();
