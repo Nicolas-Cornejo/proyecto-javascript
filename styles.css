@@ -1,0 +1,15 @@
+header {
+    background-color: brown;
+    width: 100%;
+}
+
+main {
+    background-color: antiquewhite;
+}
+img {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 45rem;
+        grid-template-areas: "card-image";
+    width: 30%;
+}
