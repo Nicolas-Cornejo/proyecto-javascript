@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+    width: auto;
+}
+
 header {
     background-color: brown;
     width: 100%;
@@ -6,10 +12,11 @@ header {
 main {
     background-color: antiquewhite;
 }
-img {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 45rem;
-        grid-template-areas: "card-image";
-    width: 30%;
+.card-img-top {
+    height: 300px;
+}
+
+.card-img {
+    height: 150px;
+    object-fit: contain;
 }
